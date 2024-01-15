@@ -1,0 +1,22 @@
+-- Place this script in a LocalScript (such as in StarterPlayer -> StarterPlayerScripts)
+
+local player = game.Players.LocalPlayer
+local userInputService = game:GetService("UserInputService")
+
+local function onKeyPress(input)
+	if input.KeyCode == Enum.KeyCode.LeftControl then
+		-- Increase WalkSpeed when Ctrl key is pressed
+		player.Character:FindFirstChildOfClass("Humanoid").WalkSpeed = 50  -- You can adjust the WalkSpeed value
+	end
+end
+
+local function onKeyRelease(input)
+	if input.KeyCode == Enum.KeyCode.LeftControl then
+		-- Reset WalkSpeed when Ctrl key is released
+		player.Character:FindFirstChildOfClass("Humanoid").WalkSpeed = 16  -- Default WalkSpeed
+	end
+end
+
+-- Connect functions to events
+userInputService.InputBegan:Connect(onKeyPress)
+userInputService.InputEnded:Connect(onKeyRelease)
